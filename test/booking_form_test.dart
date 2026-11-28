@@ -12,8 +12,9 @@ Future<void> pumpForm(WidgetTester tester) async {
 Finder field(String label) => find.widgetWithText(TextFormField, label);
 
 void main() {
-  testWidgets('AC1: empty form shows an error for every required field',
-      (tester) async {
+  testWidgets('AC1: empty form shows an error for every required field', (
+    tester,
+  ) async {
     await pumpForm(tester);
 
     await tester.tap(find.text('Reserve'));
@@ -25,8 +26,9 @@ void main() {
     expect(find.text('Please accept the hotel policy'), findsOneWidget);
   });
 
-  testWidgets('AC2: phone number with fewer than 10 digits is rejected',
-      (tester) async {
+  testWidgets('AC2: phone number with fewer than 10 digits is rejected', (
+    tester,
+  ) async {
     await pumpForm(tester);
 
     await tester.enterText(field('Phone number'), '12345');
@@ -36,8 +38,9 @@ void main() {
     expect(find.text('Use 10 or 11 digits, numbers only'), findsOneWidget);
   });
 
-  testWidgets('AC3: name shorter than 3 characters is rejected',
-      (tester) async {
+  testWidgets('AC3: name shorter than 3 characters is rejected', (
+    tester,
+  ) async {
     await pumpForm(tester);
 
     await tester.enterText(field('Guest name'), 'Al');
@@ -47,8 +50,9 @@ void main() {
     expect(find.text('Name must have at least 3 characters'), findsOneWidget);
   });
 
-  testWidgets('AC4: valid booking opens the Choose Your Room screen',
-      (tester) async {
+  testWidgets('AC4: valid booking opens the Choose Your Room screen', (
+    tester,
+  ) async {
     await pumpForm(tester);
 
     await tester.enterText(field('Guest name'), 'Ali Hassan');
@@ -65,8 +69,9 @@ void main() {
     expect(find.text('Choose Your Room'), findsOneWidget);
   });
 
-  testWidgets('AC5: typing a valid name removes the name error',
-      (tester) async {
+  testWidgets('AC5: typing a valid name removes the name error', (
+    tester,
+  ) async {
     await pumpForm(tester);
 
     await tester.tap(find.text('Reserve'));

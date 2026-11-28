@@ -57,10 +57,34 @@ class _RoomListPageState extends State<RoomListPage> {
                     canTapOnHeader: true,
                     isExpanded: room.isExpanded,
                     headerBuilder: (context, isExpanded) => ListTile(
-                      leading: Icon(room.icon),
-                      title: Text(room.name),
+                      leading: CircleAvatar(
+                        backgroundColor: Theme.of(context)
+                            .colorScheme
+                            .primaryContainer,
+                        child: Icon(room.icon),
+                      ),
+                      title: Text(
+                        room.name,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ),
-                    body: ListTile(subtitle: Text(room.description)),
+                    body: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(room.description),
+                            const SizedBox(height: 8),
+                            const Chip(
+                              avatar: Icon(Icons.check_circle, size: 18),
+                              label: Text('Free cancellation'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
               ],
             ),
